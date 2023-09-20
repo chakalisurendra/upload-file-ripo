@@ -21,7 +21,7 @@ resources:
     MyServerlessExampleBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: serverless-example-bucket
+        BucketName: serverless-example-bucket-1152
     # define a policy for an existing role
     UploadFilePolicy:
       Type: AWS::IAM::Policy
@@ -39,7 +39,7 @@ resources:
                 Fn::Join:
                   - ""
                   - - "arn:aws:s3:::"
-                    - Ref: MyServerlessExampleBucket
+                    - Ref: MyServerlessExampleBuckets
                     - "/*"
         Roles:
           - upload-file-roles
