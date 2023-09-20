@@ -3,6 +3,8 @@ service: upload-file-api
 provider:
   name: aws
   runtime: nodejs18.x
+  stage: dev
+  region: ap-south-1
   apiGateway:
     # accepted binary type for file uploads
     binaryMediaTypes:
