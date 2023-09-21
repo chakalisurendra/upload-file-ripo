@@ -46,4 +46,4 @@ resources:
                     - Ref: MyServerlessExampleBuckets
                     - "/*"
         Roles:
-          - upload-file-s3
+          - uplaod-file-1-s3
