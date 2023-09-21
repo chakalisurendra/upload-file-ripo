@@ -1,18 +1,13 @@
-
-service: upload-file-api
+service: upload-file-api-1
 provider:
   name: aws
   runtime: nodejs18.x
   stage: dev
   region: ap-south-1
   apiGateway:
-    # accepted binary type for file uploads
-        # accepted binary type for file uploads
-
     binaryMediaTypes:
       - 'multipart/form-data'
 functions:
-  # sync upload
   uploadFile:
     handler: build.uploadFile
     events:
@@ -22,11 +17,10 @@ functions:
           cors: true
 resources:
   Resources:
-    MyServerlessExampleBucket:
+    MyServerlessExampleBucket: # Corrected the logical name here
       Type: AWS::S3::Bucket
       Properties:
         BucketName: my-examples1-bucket
-    # define a policy for an existing role
     UploadFilePolicy:
       Type: AWS::IAM::Policy
       Properties:
@@ -43,7 +37,56 @@ resources:
                 Fn::Join:
                   - ""
                   - - "arn:aws:s3:::"
-                    - Ref: MyServerlessExampleBuckets
+                    - Ref: MyServerlessExampleBucket # Use the corrected logical name here
                     - "/*"
         Roles:
           - uplaod-file-1-s3
+
+# service: upload-file-api
+# provider:
+#   name: aws
+#   runtime: nodejs18.x
+#   stage: dev
+#   region: ap-south-1
+#   apiGateway:
+#     # accepted binary type for file uploads
+#         # accepted binary type for file uploads
+
+#     binaryMediaTypes:
+#       - 'multipart/form-data'
+# functions:
+#   # sync upload
+#   uploadFile:
+#     handler: build.uploadFile
+#     events:
+#       - http:
+#           method: post
+#           path: upload
+#           cors: true
+# resources:
+#   Resources:
+#     MyServerlessExampleBucket:
+#       Type: AWS::S3::Bucket
+#       Properties:
+#         BucketName: my-examples1-bucket
+#     # define a policy for an existing role
+#     UploadFilePolicy:
+#       Type: AWS::IAM::Policy
+#       Properties:
+#         PolicyName: UploadObjects
+#         PolicyDocument:
+#           Version: '2012-10-17'
+#           Statement:
+#             - Sid: LambdaPutObjects
+#               Effect: Allow
+#               Action:
+#                 - s3:PutObject
+#                 - s3:PutObjectTagging
+#               Resource:
+#                 Fn::Join:
+#                   - ""
+#                   - - "arn:aws:s3:::"
+#                     - Ref: MyServerlessExampleBuckets
+#                     - "/*"
+#         Roles:
+#           - uplaod-file-1-s3
