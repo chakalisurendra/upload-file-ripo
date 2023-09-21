@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 const parseMultipart = require('parse-multipart');
 
-const BUCKET = 'serverless-s3-bucket';
+const BUCKET = 'my-examples1-bucket';
 
 const s3 = new AWS.S3();
 
