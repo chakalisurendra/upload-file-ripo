@@ -9,7 +9,7 @@ provider:
       - 'multipart/form-data'
 functions:
   uploadFile:
-    handler: build.uploadFile
+    handler: api.handle
     events:
       - http:
           method: post
